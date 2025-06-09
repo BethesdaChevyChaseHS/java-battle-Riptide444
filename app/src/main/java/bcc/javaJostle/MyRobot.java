@@ -89,7 +89,7 @@ public class MyRobot extends Robot{
                 }
                 if(canAttack()) {
                     // If we can't find a path, shoot at the target
-                    shootAtLocation(targetPos[0], targetPos[1]);
+                    shootAtLocation(targetPos[0] + Utilities.ROBOT_SIZE/2, targetPos[1] + Utilities.ROBOT_SIZE/2);
                 }
                 return;
             }
@@ -104,7 +104,7 @@ public class MyRobot extends Robot{
         }
         if(canAttack()) {
             // If we can't find a path, shoot at the target
-            shootAtLocation(targetPos[0], targetPos[1]);
+            shootAtLocation(targetPos[0] + Utilities.ROBOT_SIZE/2, targetPos[1] + Utilities.ROBOT_SIZE/2);
         }
        /* Implement your robot's logic here
          For example, you can move towards the nearest robot or shoot at a target
