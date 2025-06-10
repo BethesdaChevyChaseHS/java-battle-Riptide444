@@ -105,19 +105,6 @@ public class MyRobot extends Robot{
             // If we can't find a path, shoot at the target
             shootAtLocation(targetPos[0] + Utilities.ROBOT_SIZE/2, targetPos[1] + Utilities.ROBOT_SIZE/2);
         }
-       /* Implement your robot's logic here
-         For example, you can move towards the nearest robot or shoot at a target
-         to move, choose a direciton to go
-         to move left - use xMovement = -1
-         to move right - use xMovement = 1
-         to move up - use yMovement = -1
-         to move down - use yMovement = 1
-         You can ONLY move in one direction at a time, if your output doesn't match the above you will get an error
-
-         to shoot, use shootAtLocation(x, y) where x and y are the coordinates of the target
-         only shoot when canAttack() is true!
-        */
-       // System.out.println("Thinking...");
        
     }
 
