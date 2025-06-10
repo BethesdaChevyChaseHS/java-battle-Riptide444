@@ -37,9 +37,6 @@ public class MyRobot extends Robot{
             startTileX = getX() / Utilities.TILE_SIZE;
             startTileY = getY() / Utilities.TILE_SIZE;
             path = findPath(getX() / Utilities.TILE_SIZE, getY() / Utilities.TILE_SIZE, targetPos[0] / Utilities.TILE_SIZE, targetPos[1] / Utilities.TILE_SIZE, map.getTiles());
-            for(Move m : path) {
-                System.out.println("Path step: " + m);
-            }
         }
         if(gmode == 1) {
             for(Robot r : robots) {
@@ -49,17 +46,22 @@ public class MyRobot extends Robot{
                 }
             }
         }
+        if(gmode == 2) {
+            for(Robot r : robots) {
+                if(r.getName().equals(getName())) continue;
+                targetPos[0] = r.getX();
+                targetPos[1] = r.getY();
+                break;
+            }
+        }
 
         if(!path.isEmpty()) {
             Move nextMove = path.get(0);
             int dx = nextMove.getX();
             int dy = nextMove.getY();
             
-            
-            
             if(dx == 0) {
                 if(stepY == -1) {
-                    System.out.println("Currently at: " + getY() + ", Next move to " + (getY() + dy * Utilities.TILE_SIZE));
                     movement.setY(movement.getY() + dy);
                     stepY = (startTileY + movement.getY()) * Utilities.TILE_SIZE;
                 }
@@ -67,7 +69,6 @@ public class MyRobot extends Robot{
                     path.remove(0);
                     stepY = -1;
                 } else {
-                    System.out.println("Currently at: " + getY() + ", Next move to " + (stepY));
                     yMovement = dy;
                 }
                 if(canAttack()) {
@@ -76,7 +77,6 @@ public class MyRobot extends Robot{
                 return;
             } else if(dy == 0) {
                 if(stepX == -1) {
-                    System.out.println("Currently at: " + getX() + ", Next move to " + (getX() + dx * Utilities.TILE_SIZE));
                     movement.setX(movement.getX() + dx);
                     stepX = (startTileX + movement.getX()) * Utilities.TILE_SIZE;
                 }
@@ -84,7 +84,6 @@ public class MyRobot extends Robot{
                     path.remove(0);
                     stepX = -1;
                 } else {
-                    System.out.println("Currently at: " + getX() + ", Next move to " + (stepX));
                     xMovement = dx;
                 }
                 if(canAttack()) {
@@ -93,7 +92,7 @@ public class MyRobot extends Robot{
                 }
                 return;
             }
-        } else if(gmode == 1) {
+        } else if(gmode == 1 || gmode == 2) {
             for(Robot r : robots) {
                 if(r.getName().equals("Rando")) {
                     targetPos[0] = r.getX();
@@ -151,7 +150,6 @@ public class MyRobot extends Robot{
                     finalPath.add(path.get(i));
                 }
                 finalPath.remove(finalPath.size() - 1);
-                System.out.println("Path found: " + finalPath.size() + " steps");
                 return finalPath; // Exit after finding the path
             }
 
